@@ -1,18 +1,16 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
-import { resolve } from "path";
-import tailwindcss from "@tailwindcss/vite";
-
+// nuxt.config.ts
 export default defineNuxtConfig({
-  alias: {
-    "@": resolve(__dirname, "/"),
+  modules: ["@pinia/nuxt"],
+  pinia: {
+    autoImports: ["defineStore", "storeToRefs"],
   },
-  css: ["~/assets/main.css"],
-  vite: {
-    plugins: [
-      tailwindcss(),
-    ],
+  typescript: {
+    shim: false,
+    strict: true,
   },
-  compatibilityDate: '2024-11-01',
-  devtools: { enabled: true }
-
+  css: ["@/assets/css/main.css", "@/assets/css/variables.css"],
+  devServer: {
+    port: 3000,
+    host: "localhost",
+  },
 });
